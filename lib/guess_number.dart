@@ -4,7 +4,7 @@ import 'dart:io';
 import 'game.dart';
 
 void main() {
-  const maxRandom = 10;
+  const maxRandom = 100;
   var game = Game();
   var isCorrect = false;
   var again = true;

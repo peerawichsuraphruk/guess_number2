@@ -1,7 +1,7 @@
 import 'dart:math';
 
 class Game { // camel case
-  static const maxRandom = 10;
+  static const maxRandom = 100;
   int? answer;
   var guessCount = 0;
   var again = true;
