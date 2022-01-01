@@ -5,16 +5,16 @@ import 'dart:math';
 class Game {
   int? _answer;
   int _guessCount = 0;
+  static var playList = <int>[];
+  var sum = 0;
 
+  //Random
   Game({maxRandom = 100}) {
     var r = Random();
     _answer = r.nextInt(maxRandom) + 1;
   }
 
-  int get guessCount {
-    return _guessCount;
-  }
-
+  //GuessCount
   int doGuess(int num) {
     _guessCount++;
     if (num > _answer!) {
@@ -26,21 +26,25 @@ class Game {
     }
   }
 
-  List<int> gameRound = [];
-
-  add (int num) {
-    gameRound.add(num);
-    for (var n = 0; n < gameRound.length; n++) {
-      print('Game #${n+1}: ${gameRound[n]} guesses');
-    }
+  int get guessCount {
+    return _guessCount;
   }
 
-  printInfo () {
-    print("");
-    print("You've played ${gameRound.length} games");
-    for (var n in gameRound) {
-      print(n);
-    }
+  //List playGame
+  void add (int num) {
+    playList.add(num);
   }
+
+  void summary () {
+    print("\n\nYou've played ${playList.length} games");
+    for (var i=0; i < playList.length; i++) {
+      print("🚀 Game #${i+1}: ${playList[i]} guesses");
+      sum += playList[i];
+    }
+    print('Total: $sum guesses');
+  }
+
 }
+
+
 

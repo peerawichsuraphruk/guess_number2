@@ -6,11 +6,9 @@ import 'game.dart';
 
 void main() {
   var game = Game();
-  int round = 0;
   while (true) {
     playGame();
     String? input;
-    round++;
 
     do {
       stdout.write('Play again? (Y/N): ');
@@ -19,7 +17,7 @@ void main() {
 
     if (input.toLowerCase() == 'n') break;
   }
-  game.printInfo();
+  game.summary();
   // end of program
 }
 
@@ -27,8 +25,8 @@ void playGame() {
   stdout.write('Enter a maximum number to random: ');
   var input = stdin.readLineSync();
   var max = int.tryParse(input!);
+  max ??= 100;
   var game = Game(maxRandom: max);
-
   var isCorrect = false;
 
   print('╔════════════════════════════════════════');
