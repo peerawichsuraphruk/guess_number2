@@ -1,38 +1,46 @@
+// ignore_for_file: avoid_print
+
 import 'dart:math';
 
-class Game { // camel case
-  static const maxRandom = 100;
-  int? answer;
-  var guessCount = 0;
-  var again = true;
+class Game {
+  int? _answer;
+  int _guessCount = 0;
 
-  Game() {
+  Game({maxRandom = 100}) {
     var r = Random();
-    answer = r.nextInt(maxRandom) + 1;
-    guessCount = 0;
+    _answer = r.nextInt(maxRandom) + 1;
+  }
+
+  int get guessCount {
+    return _guessCount;
   }
 
   int doGuess(int num) {
-    guessCount++;
-    // ทายถูก return 0
-    // ทายมากไป return 1
-    // ทายน้อยไป return -1
-    if (num > answer!) {
+    _guessCount++;
+    if (num > _answer!) {
       return 1;
-    } else if (num < answer!) {
+    } else if (num < _answer!) {
       return -1;
     } else {
       return 0;
     }
   }
 
-  void newRandom () {
-    var r = Random();
-    answer = r.nextInt(maxRandom) + 1;
+  List<int> gameRound = [];
+
+  add (int num) {
+    gameRound.add(num);
+    for (var n = 0; n < gameRound.length; n++) {
+      print('Game #${n+1}: ${gameRound[n]} guesses');
+    }
   }
 
-  void resetCount () {
-    guessCount = 0;
+  printInfo () {
+    print("");
+    print("You've played ${gameRound.length} games");
+    for (var n in gameRound) {
+      print(n);
+    }
   }
-
 }
+
